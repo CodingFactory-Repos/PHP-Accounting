@@ -20,7 +20,7 @@
         define('URL_ROOT', 'https://'.$_SERVER['HTTP_HOST'].str_replace('/public/index.php', '', $_SERVER['SCRIPT_NAME']));
     }
     //define('URL_ROOT', 'https://PetitComptable.com');
-    
+
     // Nom du site
     define('SITE_NAME', 'PetitComptable');
     

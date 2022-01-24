@@ -17,9 +17,9 @@ require APP_ROOT . '/views/inc/head.php';
             method="POST"
             action="<?php echo URL_ROOT; ?>/users/register"
         >
-            <input type="text" placeholder="Username *" name="username">
+            <input type="text" placeholder="lastname *" name="lastname">
             <span class="invalidFeedback">
-                <?php echo $data['usernameError']; ?>
+                <?php echo $data['lastnameError']; ?>
             </span>
 
             <input type="email" placeholder="Email *" name="email">

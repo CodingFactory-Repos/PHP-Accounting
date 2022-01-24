@@ -11,9 +11,9 @@ require APP_ROOT . '/views/inc/head.php';
     <div class="wrapper-login">
         <h2>Signin</h2>
         <form method="post" action="<?= URL_ROOT ?>/users/login">
-            <input type="text" name="username" placeholder="Username">
+            <input type="text" name="email" placeholder="Email">
             <span class="invalidFeedback">
-                <?= $data['usernameError'] ?>
+                <?= $data['emailError'] ?>
             </span>
 
             <input type="password" name="password" placeholder="Password">

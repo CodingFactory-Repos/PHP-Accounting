@@ -1,7 +1,7 @@
 <?php
 
 
-class User
+class UserModel
 {
     private Database $db;
 
@@ -10,10 +10,10 @@ class User
         $this->db = new Database();
     }
 
-    public function login($username, $password)
+    public function login($email, $password)
     {
-        $this->db->query('SELECT * FROM users WHERE username = :username');
-        $this->db->bind(':username', $username);
+        $this->db->query('SELECT * FROM user WHERE email = :email');
+        $this->db->bind(':email', $email);
         $row = $this->db->fetch();
         $hashedPassword = $row->password;
 
@@ -26,8 +26,7 @@ class User
 
     public function register($data)
     {
-        $this->db->query('INSERT INTO users (username, email, password) VALUES (:username, :email, :password)');
-        $this->db->bind(':username', $data['username']);
+        $this->db->query('INSERT INTO user (email, password) VALUES (:email, :password)');
         $this->db->bind(':email', $data['email']);
         $this->db->bind(':password', $data['password']);
 
@@ -40,7 +39,7 @@ class User
 
     public function findUserByEmail($email)
     {
-        $this->db->query('SELECT * FROM users WHERE email = :email');
+        $this->db->query('SELECT * FROM user WHERE email = :email');
         $this->db->bind(':email', $email);
 
         if($this->db->rowCount() > 0){
