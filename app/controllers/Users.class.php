@@ -10,6 +10,10 @@
 
         public function login()
         {
+            if (isLoggedIn()) {
+                header("Location: " . URL_ROOT . "/dashboard");
+            }
+
             $data = [
                 'title' => 'Login page',
                 'email' => '',
@@ -60,6 +64,10 @@
 
         public function register()
         {
+            if (isLoggedIn()) {
+                header("Location: " . URL_ROOT . "/dashboard");
+            }
+
             $data = [
                 'lastname' => '',
                 'email' => '',
