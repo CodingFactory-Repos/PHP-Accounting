@@ -26,9 +26,10 @@ class UserModel
 
     public function register($data)
     {
-        $this->db->query('INSERT INTO user (email, password) VALUES (:email, :password)');
+        $this->db->query('INSERT INTO user (email, password, lastname) VALUES (:email, :password, :lastname)');
         $this->db->bind(':email', $data['email']);
         $this->db->bind(':password', $data['password']);
+        $this->db->bind(':lastname', $data['lastname']);
 
         if($this->db->execute()){
             return true;
@@ -41,8 +42,7 @@ class UserModel
     {
         $this->db->query('SELECT * FROM user WHERE email = :email');
         $this->db->bind(':email', $email);
-
-        if($this->db->rowCount() > 0){
+        if(count($this->db->fetchAll()) > 0){
             return true;
         } else {
             return false;

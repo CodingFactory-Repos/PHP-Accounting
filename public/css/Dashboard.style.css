@@ -1,1 +1,21 @@
-/* app/views/Dashboard/index.php */
+.my-accounts-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.bankAccounts {
+  width: 25%;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  margin: 10px 10px;
+  text-decoration: none;
+}
+
+.bankAccounts img {
+  width: 25%;
+  height: auto;
+  border-radius: 10px;
+}

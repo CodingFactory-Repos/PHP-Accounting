@@ -113,6 +113,8 @@
                     $data['passwordError'] = 'Le mot de passe doit contenir au moins 8 caractères';
                 } elseif(preg_match($passwordValidation, $data['password'])){
                     $data['passwordError'] = 'Le mot de passes doit contenir au moins 1 chiffre';
+                } elseif ($data['lastname'] == $data['password']){
+                    $data['passwordError'] = 'Le mot de passe doit être différent de votre nom!';
                 }
 
                 if(empty($data['confirmPassword'])){
@@ -141,6 +143,7 @@
         {
             $_SESSION['user_id'] = $loggedInUser->id_user;
             $_SESSION['email'] = $loggedInUser->email;
+            $_SESSION['lastname'] = $loggedInUser->lastname;
             header('Location: '.URL_ROOT.'/index');
         }
 
@@ -148,6 +151,7 @@
         {
             unset($_SESSION['user_id']);
             unset($_SESSION['email']);
+            unset($_SESSION['lastname']);
             header('Location: '.URL_ROOT.'/users/login');
         }
     }
