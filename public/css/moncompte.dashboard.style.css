@@ -11,11 +11,3 @@ input {
 input:hover {
   border: 1px solid #aaa;
 }
-
-a {
-  margin: 10px 0;
-}
-
-.danger {
-  color: #a80000;
-}

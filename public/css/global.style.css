@@ -1,5 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap');
 
+.danger {
+  margin-top: 30px;
+  color: #a80000;
+  transition: all 0.3s ease-in-out;
+  width: fit-content;
+}
+
+.danger:hover {
+  padding: 0.5rem;
+  background-color: #a80000;
+  color: #fff;
+  border-radius: 5px;
+}
+
 body {
   font-family: 'Roboto Mono', monospace;
 }
@@ -30,3 +44,31 @@ main {
   flex-direction: column;
   padding: 0 10%;
 }
+#submit {
+  scale(1);
+  cursor: pointer;
+  border-radius: 5em;
+  transition: all 0.4s ease-in-out;
+  border: 3px solid #007CFF;
+  background-color: white;
+  margin-left: 5px;
+}
+
+#submit:hover{
+  color: white;
+  background-color: #007CFF;
+  scale: 1.05;
+}
+
+#linkcreate:hover{
+  color: #007CFF;
+  cursor: pointer;
+   transition: all 0.2s;
+}
+
+#linklogin:hover{
+  color: #007CFF;
+  cursor: pointer;
+   transition: all 0.2s;
+}
+

@@ -36,6 +36,6 @@ require APP_ROOT . '/views/inc/nav.php';
 
         <button id="submit" type="submit" value="submit">Submit</button>
 
-        <p class="options">Already register ? <a href="<?php echo URL_ROOT; ?>/users/login">Login to your account</a></p>
+        <p class="options">Already register ? <a id="linklogin" href="<?php echo URL_ROOT; ?>/users/login">Login to your account</a></p>
     </form>
 </main>
