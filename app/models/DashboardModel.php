@@ -32,7 +32,7 @@ class DashboardModel
 
     public function getTransactionsFromBank($bank_id)
     {
-        $this->db->query('SELECT DISTINCT operation.name, operation.amount, category.name_category, category.type FROM operation LEFT JOIN category ON operation.id_category = category.id_category WHERE id_bank_account = :id_bank_account ORDER BY operation.id_operation DESC;');
+        $this->db->query('SELECT DISTINCT operation.id_operation, operation.name, operation.amount, category.name_category, category.type FROM operation LEFT JOIN category ON operation.id_category = category.id_category WHERE id_bank_account = :id_bank_account ORDER BY operation.id_operation DESC;');
         $this->db->bind(':id_bank_account', $bank_id);
         return $this->db->fetchAll();
     }
@@ -82,6 +82,20 @@ class DashboardModel
         return $this->db->fetchAll();
     }
 
+    public function getTransactionFromId($transaction_id)
+    {
+        $this->db->query('SELECT * FROM operation WHERE id_operation = :id_operation');
+        $this->db->bind(':id_operation', $transaction_id);
+        return $this->db->fetch();
+    }
+
+    public function getCategoryFromId($category_id)
+    {
+        $this->db->query('SELECT * FROM category WHERE id_category = :id_category');
+        $this->db->bind(':id_category', $category_id);
+        return $this->db->fetch();
+    }
+
     public function getBankFromName($bank_name)
     {
         $this->db->query('SELECT * FROM bank_account WHERE id_user = :id_user AND account_name = :account_name');
@@ -97,6 +111,25 @@ class DashboardModel
         $this->db->bind(':id_bank_account', $bank_id);
         if($this->db->execute()){
             return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function deleteTransaction($transaction_id, $bank_id, $type, $amount)
+    {
+        $this->db->query('DELETE FROM operation WHERE id_operation = :id_operation AND id_bank_account = :id_bank_account');
+        $this->db->bind(':id_bank_account', $bank_id);
+        $this->db->bind(':id_operation', $transaction_id);
+
+        if ($type == "debit") {
+            $type_operation = "credit";
+        } else if ($type == "credit") {
+            $type_operation = "debit";
+        }
+
+        if($this->db->execute()){
+            return $this->updateBank($bank_id, $amount, $type_operation);
         } else {
             return false;
         }
@@ -149,6 +182,23 @@ class DashboardModel
 
         if($this->db->execute()){
             return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function updateTransaction($transaction_id, $transaction_name, $transaction_category_id, $amount, $bank_account, $bank_id, $transaction_category_type)
+    {
+        $this->db->query('UPDATE operation SET name = :operation_name, id_category = :category_id, amount = :amount WHERE id_operation = :id_operation');
+        $this->db->bind(':id_operation', $transaction_id);
+        $this->db->bind(':operation_name', $transaction_name);
+        $this->db->bind(':category_id', $transaction_category_id);
+        $this->db->bind(':amount', $amount);
+
+
+
+        if($this->db->execute()){
+            return $this->updateBank($bank_id, $bank_account, $transaction_category_type);
         } else {
             return false;
         }

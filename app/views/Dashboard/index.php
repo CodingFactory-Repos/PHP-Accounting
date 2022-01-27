@@ -38,9 +38,9 @@
                 <?php foreach($data['transactions'] as $transactions): ?>
                     <?php if(!empty($transactions)): ?>
                         <?php foreach($transactions as $transaction): ?>
-                            <a href="" class="bankAccounts">
+                            <a href="<?= URL_ROOT ?>/dashboard/transaction/<?= $transaction->id_operation ?>" class="bankAccounts">
                                 <img src="https://logo.clearbit.com/<?= str_replace(" ", "", $transaction->name) ?>.com" alt="" />
-                                <h3><?= $transaction->name ?></h3>
+                                <h3><?= ucfirst($transaction->name) ?></h3>
                                 <?php
                                     $symbol = ($transaction->type == "debit") ? "-" : "+";
                                 ?>

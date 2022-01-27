@@ -13,7 +13,7 @@
         <input type="text" value="Your password is crypted" disabled />
 
         <h2>Zone de Danger</h2>
-        <a href="<?= URL_ROOT ?>/users/logout">Se déconnecter</a>
+        <a href="<?= URL_ROOT ?>/users/logout" class="disconnect">Se déconnecter</a>
         <a href="<?= URL_ROOT ?>/dashboard/moncompte/delete" class="danger">Supprimer mon compte</a>
     </main>
     <?php
